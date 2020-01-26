@@ -5,7 +5,6 @@ Scripts for Meteohelix IoT Pro weather station by Barani design
 #
 # ecowitt Meteotemplate plugin
 <i>Simple plugin for [Meteotemplate](http://www.meteotemplate.com/), wonderful template developed by Jachym.</i><br><br>
-<b><i>Install this plugin if you don't want to install the previous gateway and weewx, or if you only need to update your Meteotemplate web site. You will not store any data locally in your network</b></i>
 
 - Download it from the repository
 - Install it in the plugin directory of your template website, just like another plugin. (put in your plugins directory only the directory called <i>meteohelix</i> without the version number: <del>Meteotemplate/meteohelix_x.x/</del>meteohelix) 
@@ -13,6 +12,6 @@ Scripts for Meteohelix IoT Pro weather station by Barani design
 - Configure it
 - Configure the [weather.allMeteo](https://weather.allmeteo.com/) website with the setup you read in the Plugin page.
 
-![Example of plugin page](https://raw.githubusercontent.com/iz0qwm/ecowitt_http_gateway/master/ecowitt_plugin1.png)
+![Example of allMeteo_settings](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/meteohelix_http.jpg)
 ![Example of plugin admin page](https://raw.githubusercontent.com/iz0qwm/ecowitt_http_gateway/master/ecowitt_plugin2.png)
 ![Example of plugin admin page](https://raw.githubusercontent.com/iz0qwm/ecowitt_http_gateway/master/ecowitt_plugin3.png)
