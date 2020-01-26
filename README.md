@@ -12,7 +12,7 @@ Scripts for Meteohelix IoT Pro weather station by Barani design
 - Configure it
 - Configure the [weather.allMeteo](https://weather.allmeteo.com/) website with the setup you read in the Plugin page.
 
-![Example of plugin admin page](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/meteohelix_plugin1.png)
+
 ![Example of allMeteo_settings](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/meteohelix_http.jpg)
 
 
