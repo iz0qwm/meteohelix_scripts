@@ -1,5 +1,5 @@
 # meteohelix_scripts
-Scripts for Meteohelix IoT Pro weather station by Barani design
+Scripts for [Meteohelix IoT Pro weather](https://www.baranidesign.com/meteohelix-pro-weather-station) station by Barani design
 
 #
 #
