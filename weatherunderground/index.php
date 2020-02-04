@@ -17,6 +17,8 @@
 	# 		- initial release	
 	#   v1.1 - Feb 03, 202
 	#		- accumulated rain
+	#   v2.0 - Feb 04, 2020
+	#		- simple UV calculation	
 	############################################################################
 	
 	# Create e new weather station on Wunderground. Keep note of Station_ID and Station_Key
@@ -31,8 +33,8 @@
 	$forward_data_wu = 1;
 	$forward_server = "weatherstation.wunderground.com/weatherstation/updateweatherstation.php";
 	$wu_id = "XXXXXX";
-	$wu_station_key = "*******";
-	$baromhpacorrection = 0;  # Correction for pressure on sea-level
+	$wu_station_key = "********";
+	$baromhpacorrection = 0;  # Correction for pressure to sea-level
 	
 	# Convert HTTP POST variables to json
 	#$weather_data = $_POST;
@@ -83,6 +85,41 @@
 	@$weather_data['baromrelf'] = round( $weather_data['baromrelhpa'] / $f_in_hpa, 2 );
     #@$weather_data['baromrelhpa'] = round( $weather_data['baromrelin'] * $f_in_hpa, 2 );
     
+	# UV simple calculation
+	if ( $weather_data['irradiation'] < 70 ) 
+	{
+		$weather_data['uv'] = 0;
+	} elseif ( $weather_data['irradiation'] >= 70 && $weather_data['irradiation'] < 440 ) {
+		$weather_data['uv'] = 1;
+		if ( $weather_data['tempc'] > 28 ) {
+			$weather_data['uv'] = 2;
+		}
+	} elseif ( $weather_data['irradiation'] >= 440 && $weather_data['irradiation'] < 600 ) {
+		$weather_data['uv'] = 2;
+		if ( $weather_data['tempc'] > 28 ) {
+			$weather_data['uv'] = 3;
+		}
+	} elseif ( $weather_data['irradiation'] >= 600 && $weather_data['irradiation'] < 800 ) {
+		$weather_data['uv'] = 3;
+		if ( $weather_data['tempc'] > 28 ) {
+			$weather_data['uv'] = 4;
+		}
+	} elseif ( $weather_data['irradiation'] >= 800 && $weather_data['irradiation'] < 1000 ) {	
+		$weather_data['uv'] = 4;
+		if ( $weather_data['tempc'] > 30 ) {
+			$weather_data['uv'] = 6;
+		} elseif ( $weather_data['tempc'] > 28 ) {
+			$weather_data['uv'] = 4;
+		}	
+	} elseif ( $weather_data['irradiation'] >= 1000 ) {	
+		$weather_data['uv'] = 5;
+		if ( $weather_data['tempc'] > 30 ) {
+			$weather_data['uv'] = 7;
+		} elseif ( $weather_data['tempc'] > 28 ) {
+			$weather_data['uv'] = 6;
+		}
+	}	
+	
     # Date and time
 	#$weather_data['dateutc'] = gmdate("Y-m-d\TH:i:s\Z");
     #$weather_data['dayutc'] = gmdate("Y-m-d\T");
@@ -109,10 +146,11 @@
 		@$weather_data_forward['dewptf'] = $weather_data['dewptf'] ;
 		@$weather_data_forward['solarradiation'] = $weather_data['irradiation'] ;
 		@$weather_data_forward['dailyrainin'] = $weather_data['dailyrainin'] ;
+		@$weather_data_forward['UV'] = $weather_data['uv'] ;
 		
 		#@$weather_data['forward_url'] = "http://" . $forward_server . $_SERVER[REQUEST_URI];
 		@$weather_data_forward['forward_url'] = "http://" . $forward_server ;
-		@$weather_data_forward['forward'] = file_get_contents($weather_data_forward['forward_url'] . "?" . "ID=" . @$weather_data_forward['wu_id'] . "&PASSWORD=" . @$weather_data_forward['wu_station_key'] . "&dateutc=" . @$weather_data_forward['dateutc'] . "&tempf=" . @$weather_data_forward['tempf'] . "&baromin=" . @$weather_data_forward['baromin'] ."&humidity=" . @$weather_data_forward['humidity'] . "&dewptf=" . @$weather_data_forward['dewptf'] . "&solarradiation=" . @$weather_data_forward['solarradiation'] . "&dailyrainin=" . @$weather_data_forward['dailyrainin'] . "&softwaretype=" . @$weather_data_forward['softwaretype'] . "&action=" . @$weather_data_forward['action'] );
+		@$weather_data_forward['forward'] = file_get_contents($weather_data_forward['forward_url'] . "?" . "ID=" . @$weather_data_forward['wu_id'] . "&PASSWORD=" . @$weather_data_forward['wu_station_key'] . "&dateutc=" . @$weather_data_forward['dateutc'] . "&tempf=" . @$weather_data_forward['tempf'] . "&baromin=" . @$weather_data_forward['baromin'] ."&humidity=" . @$weather_data_forward['humidity'] . "&dewptf=" . @$weather_data_forward['dewptf'] . "&solarradiation=" . @$weather_data_forward['solarradiation'] . "&UV=" . @$weather_data_forward['UV'] . "&dailyrainin=" . @$weather_data_forward['dailyrainin'] . "&softwaretype=" . @$weather_data_forward['softwaretype'] . "&action=" . @$weather_data_forward['action'] );
 	}
 	
 	#
