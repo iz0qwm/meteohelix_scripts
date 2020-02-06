@@ -15,10 +15,10 @@
 	#
 	# 	v1.0 - Feb 02, 2020
 	# 		- initial release	
-	#   v1.1 - Feb 03, 202
+	#   v1.1 - Feb 03, 2020
 	#		- accumulated rain
 	#   v2.0 - Feb 04, 2020
-	#		- simple UV calculation	
+	#		- simple UV calculation
 	############################################################################
 	
 	# Create e new weather station on Wunderground. Keep note of Station_ID and Station_Key
@@ -33,8 +33,8 @@
 	$forward_data_wu = 1;
 	$forward_server = "weatherstation.wunderground.com/weatherstation/updateweatherstation.php";
 	$wu_id = "XXXXXX";
-	$wu_station_key = "********";
-	$baromhpacorrection = 0;  # Correction for pressure to sea-level
+	$wu_station_key = "*******";
+	$baromhpacorrection = 0;  # Correction for pressure on sea-level
 	
 	# Convert HTTP POST variables to json
 	#$weather_data = $_POST;
@@ -58,7 +58,8 @@
 		$file = fopen($read_acc_rain, 'r');
 		#while (!feof($file)){ 
 			$result_acc_rain = fgets($file);
-			$result_acc_rain = round((double)$result_acc_rain, 2);
+			#$result_acc_rain = round((double)$result_acc_rain, 2);
+			$result_acc_rain = round($result_acc_rain, 2);
 		#}
 		fclose($file);
 	}
@@ -70,8 +71,8 @@
 	@$weather_data['dewptf'] = round( ($weather_data['dewptc'] * 1.8) + 32, 2 );
     
     # Distances
-	@$weather_data['dailyrainmm'] = $weather_data['rain'] + $result_acc_rain ;
-	@$weather_data['dailyrainin'] = $weather_data['dailyrainmm'] * $mm_in_f ;
+	@$weather_data['dailyrainmm'] = round($weather_data['rain'] + $result_acc_rain, 2);
+	@$weather_data['dailyrainin'] = round($weather_data['dailyrainmm'] * $mm_in_f, 2);
     #@$weather_data['rainmm'] = round( $weather_data['rainin'] * $f_in_mm, 2 );
     #@$weather_data['dailyrainmm'] = round( $weather_data['dailyrainin'] * $f_in_mm, 2 );
     #@$weather_data['weeklyrainmm'] = round( $weather_data['weeklyrainin'] * $f_in_mm, 2 );
