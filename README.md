@@ -6,7 +6,7 @@ Scripts for [Meteohelix IoT Pro weather](https://www.baranidesign.com/meteohelix
 # ecowitt Meteotemplate plugin
 <i>Simple plugin for [Meteotemplate](http://www.meteotemplate.com/), wonderful template developed by Jachym.</i><br><br>
 
-- Download it from the repository
+- Download it from the repository: meteotemplate-meteohelix-X.X.zip
 - Install it in the plugin directory of your template website, just like another plugin. (put in your plugins directory only the directory called <i>meteohelix</i> without the version number: <del>Meteotemplate/meteohelix_x.x/</del>meteohelix) 
 - Go in the Plugin setup page, via Admin Panel of Meteotemplate
 - Configure it
