@@ -15,6 +15,4 @@ Scripts for [Meteohelix IoT Pro weather](https://www.baranidesign.com/meteohelix
 ![Example of plugin admin page](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/meteohelix_plugin1.png)
 ![Example of allMeteo_settings](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/meteohelix_http.jpg)
 
-- The pressure coming from the sensor is not corrected for the Altitude on Sea Level. Configure the factor correction for the pressure in Meteotemplate settings -> Adjustments
-The value will be added in order to have the Pressure at Sea Level corrected
-![Example of Meteotemplate_pressure_settings](https://raw.githubusercontent.com/iz0qwm/meteohelix_scripts/master/Pressure_adjustments_meteotemplate.PNG)
+
