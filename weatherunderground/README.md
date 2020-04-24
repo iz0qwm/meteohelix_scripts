@@ -11,8 +11,7 @@ This script receives the data coming from a Forwarder configured on the weather.
 ## Parameters to set
 ```
   # Settings: General
-	
-  $forward_server = "weatherstation.wunderground.com/weatherstation/updateweatherstation.php";
+
   $wu_id = "XXXXXX";
   $wu_station_key = "*******";
   $baromhpacorrection = 0;  # Correction for pressure on sea-level
